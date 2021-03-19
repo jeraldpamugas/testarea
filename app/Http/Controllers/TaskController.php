@@ -98,9 +98,16 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->name = $request->name;
+        $task->order = $request->order;
+        $task->parentId = $request->parentId;
+        $task->rootId = $request->rootId;
+        $result = $task->save();
+
+        return response()->json($result, 200);
     }
 
     /**

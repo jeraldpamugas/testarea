@@ -44,181 +44,167 @@
                 <div class="card-body ">
                     <a href="javascript:void(0)" onclick="addRow()">row</a>
                     <div class="dd" id="nestable_list_1">
-
                         <ol class="dd-list">
                             @foreach ($data as $task)
-                                @if ($task['order'] == 1)
-                                    <li class="dd-item" data-id="{{ $task['id'] }}">
-                                        <div class="dd-handle">{{ $task['name'] }}
-                                            <a title="Delete" class="btnAction btnDelete pull-right pr-2 h-100 d-none"
+                            @if ($task['order'] == 1)
+                            <li class="dd-item" data-id="{{ $task['id'] }}">
+                                <div class="dd-handle">{{ $task['name'] }}
+                                    <a title="Delete" class="btnAction btnDelete pull-right pr-2 h-100 d-none"
+                                        href="javascript:void(0)">
+                                        <i class="itemIcon fa fa-trash-o"></i>
+                                    </a>
+                                    <a title="Edit" class="btnAction btnEdit pull-right pr-2 h-100 d-none"
+                                        href="javascript:void(0)">
+                                        <i class='itemIcon fa fa-edit'></i>
+                                    </a>
+                                    <a title="Add" class="btnAction btnAdd pull-right pr-2 h-100 d-none"
+                                        href="javascript:void(0)">
+                                        <i class='itemIcon fa fa-plus'></i>
+                                    </a>
+                                </div>
+                                @foreach ($data as $taskLvl2)
+                                @if ($taskLvl2['parentId'] == $task['id'])
+                                <ol class="dd-list">
+                                    @foreach ($data as $taskLvl2)
+                                    @if ($taskLvl2['parentId'] == $task['id'])
+                                    <li class="dd-item" data-id="{{ $taskLvl2['id'] }}">
+                                        <div class="dd-handle">{{ $taskLvl2['name'] }}
+                                            <a title="Delete"
+                                                class="btnAction btnDelete pull-right pr-2 h-100 d-none"
                                                 href="javascript:void(0)">
                                                 <i class="itemIcon fa fa-trash-o"></i>
                                             </a>
-                                            <a title="Edit" class="btnAction btnEdit pull-right pr-2 h-100 d-none"
+                                            <a title="Edit"
+                                                class="btnAction btnEdit pull-right pr-2 h-100 d-none"
                                                 href="javascript:void(0)">
                                                 <i class='itemIcon fa fa-edit'></i>
                                             </a>
-                                            <a title="Add" class="btnAction btnAdd pull-right pr-2 h-100 d-none"
+                                            <a title="Add"
+                                                class="btnAction btnAdd pull-right pr-2 h-100 d-none"
                                                 href="javascript:void(0)">
                                                 <i class='itemIcon fa fa-plus'></i>
                                             </a>
                                         </div>
-                                        @foreach ($data as $taskLvl2)
-                                            @if ($taskLvl2['parentId'] == $task['id'])
+                                        @foreach ($data as $taskLvl3)
+                                        @if ($taskLvl3['parentId'] == $taskLvl2['id'])
+                                        <ol class="dd-list">
+                                            @foreach ($data as $taskLvl3)
+                                            @if ($taskLvl3['parentId'] == $taskLvl2['id'])
+                                            <li class="dd-item"
+                                                data-id="{{ $taskLvl3['id'] }}">
+                                                <div class="dd-handle">
+                                                    {{ $taskLvl3['name'] }}
+                                                    <a title="Delete"
+                                                        class="btnAction btnDelete pull-right pr-2 h-100 d-none"
+                                                        href="javascript:void(0)">
+                                                        <i
+                                                            class="itemIcon fa fa-trash-o"></i>
+                                                    </a>
+                                                    <a title="Edit"
+                                                        class="btnAction btnEdit pull-right pr-2 h-100 d-none"
+                                                        href="javascript:void(0)">
+                                                        <i
+                                                            class='itemIcon fa fa-edit'></i>
+                                                    </a>
+                                                    <a title="Add"
+                                                        class="btnAction btnAdd pull-right pr-2 h-100 d-none"
+                                                        href="javascript:void(0)">
+                                                        <i
+                                                            class='itemIcon fa fa-plus'></i>
+                                                    </a>
+                                                </div>
+                                                @foreach ($data as $taskLvl4)
+                                                @if ($taskLvl4['parentId'] == $taskLvl3['id'])
                                                 <ol class="dd-list">
-                                                    <li class="dd-item" data-id="{{ $taskLvl2['id'] }}">
-                                                        <div class="dd-handle">{{ $taskLvl2['name'] }}
+                                                    @foreach ($data as $taskLvl4)
+                                                    @if ($taskLvl4['parentId'] == $taskLvl3['id'])
+                                                    <li class="dd-item"
+                                                        data-id="{{ $taskLvl4['id'] }}">
+                                                        <div
+                                                            class="dd-handle">
+                                                            {{ $taskLvl4['name'] }}
                                                             <a title="Delete"
                                                                 class="btnAction btnDelete pull-right pr-2 h-100 d-none"
                                                                 href="javascript:void(0)">
-                                                                <i class="itemIcon fa fa-trash-o"></i>
+                                                                <i
+                                                                    class="itemIcon fa fa-trash-o"></i>
                                                             </a>
                                                             <a title="Edit"
                                                                 class="btnAction btnEdit pull-right pr-2 h-100 d-none"
                                                                 href="javascript:void(0)">
-                                                                <i class='itemIcon fa fa-edit'></i>
+                                                                <i
+                                                                    class='itemIcon fa fa-edit'></i>
                                                             </a>
                                                             <a title="Add"
                                                                 class="btnAction btnAdd pull-right pr-2 h-100 d-none"
                                                                 href="javascript:void(0)">
-                                                                <i class='itemIcon fa fa-plus'></i>
+                                                                <i
+                                                                    class='itemIcon fa fa-plus'></i>
                                                             </a>
                                                         </div>
-                                                        @foreach ($data as $taskLvl3)
-                                                            @if ($taskLvl3['parentId'] == $taskLvl2['id'])
-                                                                <ol class="dd-list">
-                                                                    <li class="dd-item"
-                                                                        data-id="{{ $taskLvl3['id'] }}">
-                                                                        <div class="dd-handle">{{ $taskLvl3['name'] }}
-                                                                            <a title="Delete"
-                                                                                class="btnAction btnDelete pull-right pr-2 h-100 d-none"
-                                                                                href="javascript:void(0)">
-                                                                                <i class="itemIcon fa fa-trash-o"></i>
-                                                                            </a>
-                                                                            <a title="Edit"
-                                                                                class="btnAction btnEdit pull-right pr-2 h-100 d-none"
-                                                                                href="javascript:void(0)">
-                                                                                <i class='itemIcon fa fa-edit'></i>
-                                                                            </a>
-                                                                            <a title="Add"
-                                                                                class="btnAction btnAdd pull-right pr-2 h-100 d-none"
-                                                                                href="javascript:void(0)">
-                                                                                <i class='itemIcon fa fa-plus'></i>
-                                                                            </a>
-                                                                        </div>
-                                                                        @foreach ($data as $taskLvl4)
-                                                                            @if ($taskLvl4['parentId'] == $taskLvl3['id'])
-                                                                                <ol class="dd-list">
-                                                                                    <li class="dd-item"
-                                                                                        data-id="{{ $taskLvl4['id'] }}">
-                                                                                        <div class="dd-handle">
-                                                                                            {{ $taskLvl4['name'] }}
-                                                                                            <a title="Delete"
-                                                                                                class="btnAction btnDelete pull-right pr-2 h-100 d-none"
-                                                                                                href="javascript:void(0)">
-                                                                                                <i
-                                                                                                    class="itemIcon fa fa-trash-o"></i>
-                                                                                            </a>
-                                                                                            <a title="Edit"
-                                                                                                class="btnAction btnEdit pull-right pr-2 h-100 d-none"
-                                                                                                href="javascript:void(0)">
-                                                                                                <i
-                                                                                                    class='itemIcon fa fa-edit'></i>
-                                                                                            </a>
-                                                                                            <a title="Add"
-                                                                                                class="btnAction btnAdd pull-right pr-2 h-100 d-none"
-                                                                                                href="javascript:void(0)">
-                                                                                                <i
-                                                                                                    class='itemIcon fa fa-plus'></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        @foreach ($data as $taskLvl5)
-                                                                                            @if ($taskLvl5['parentId'] == $taskLvl4['id'])
-                                                                                                <ol class="dd-list">
-                                                                                                    <li class="dd-item"
-                                                                                                        data-id="{{ $taskLvl5['id'] }}">
-                                                                                                        <div
-                                                                                                            class="dd-handle">
-                                                                                                            {{ $taskLvl5['name'] }}
-                                                                                                            <a title="Delete"
-                                                                                                                class="btnAction btnDelete pull-right pr-2 h-100 d-none"
-                                                                                                                href="javascript:void(0)">
-                                                                                                                <i
-                                                                                                                    class="itemIcon fa fa-trash-o"></i>
-                                                                                                            </a>
-                                                                                                            <a title="Edit"
-                                                                                                                class="btnAction btnEdit pull-right pr-2 h-100 d-none"
-                                                                                                                href="javascript:void(0)">
-                                                                                                                <i
-                                                                                                                    class='itemIcon fa fa-edit'></i>
-                                                                                                            </a>
-                                                                                                            <a title="Add"
-                                                                                                                class="btnAction btnAdd pull-right pr-2 h-100 d-none"
-                                                                                                                href="javascript:void(0)">
-                                                                                                                <i
-                                                                                                                    class='itemIcon fa fa-plus'></i>
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </li>
-                                                                                                </ol>
-                                                                                            @endif
-                                                                                        @endforeach
-                                                                                    </li>
-                                                                                </ol>
-                                                                            @endif
-                                                                        @endforeach
-                                                                    </li>
-                                                                </ol>
+                                                        @foreach ($data as $taskLvl5)
+                                                        @if ($taskLvl5['parentId'] == $taskLvl4['id'])
+                                                        <ol class="dd-list">
+                                                            @foreach ($data as $taskLvl5)
+                                                            @if ($taskLvl5['parentId'] == $taskLvl4['id'])
+                                                            <li class="dd-item"
+                                                                data-id="{{ $taskLvl5['id'] }}">
+                                                                <div
+                                                                    class="dd-handle">
+                                                                    {{ $taskLvl5['name'] }}
+                                                                    <a title="Delete"
+                                                                        class="btnAction btnDelete pull-right pr-2 h-100 d-none"
+                                                                        href="javascript:void(0)">
+                                                                        <i
+                                                                            class="itemIcon fa fa-trash-o"></i>
+                                                                    </a>
+                                                                    <a title="Edit"
+                                                                        class="btnAction btnEdit pull-right pr-2 h-100 d-none"
+                                                                        href="javascript:void(0)">
+                                                                        <i
+                                                                            class='itemIcon fa fa-edit'></i>
+                                                                    </a>
+                                                                    <a title="Add"
+                                                                        class="btnAction btnAdd pull-right pr-2 h-100 d-none"
+                                                                        href="javascript:void(0)">
+                                                                        <i
+                                                                            class='itemIcon fa fa-plus'></i>
+                                                                    </a>
+                                                                </div>
+                                                            </li>
                                                             @endif
+                                                            @endforeach
+                                                        </ol>
+                                                        @break
+                                                        @endif
                                                         @endforeach
                                                     </li>
+                                                    @endif
+                                                    @endforeach
                                                 </ol>
+                                                @break
+                                                @endif
+                                                @endforeach
+                                            </li>
                                             @endif
+                                            @endforeach
+                                        </ol>
+                                        @break
+                                        @endif
                                         @endforeach
                                     </li>
+                                    @endif
+                                    @endforeach
+                                </ol>
+                                @break
                                 @endif
-                                {{-- @foreach ($data[1] as $taskItem)
-                               <h5>{{ $taskItem['parentId'] }} - {{ $taskItem['rootId'] }}</h5>
-                            @endforeach --}}
-
-                                {{-- <ol class="dd-list">
-                                <li class="dd-item" data-id="{{ $task['id'] }}">
-                                    <div class="dd-handle">{{ $task['name'] }}
-                                        <a title="Delete"
-                                            class="btnAction btnDelete pull-right pr-2 h-100 d-none"
-                                            href="javascript:void(0)">
-                                            <i class="itemIcon fa fa-trash-o"></i>
-                                        </a>
-                                        <a title="Edit"
-                                            class="btnAction btnEdit pull-right pr-2 h-100 d-none"
-                                            href="javascript:void(0)">
-                                            <i class='itemIcon fa fa-edit'></i>
-                                        </a>
-                                        <a title="Add" class="btnAction btnAdd pull-right pr-2 h-100 d-none"
-                                            href="javascript:void(0)">
-                                            <i class='itemIcon fa fa-plus'></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ol> --}}
+                                @endforeach
+                            </li>
+                            @endif
                             @endforeach
-
                         </ol>
                     </div>
                 </div>
-
-                {{-- <ol class="dd-list">
-                    <li class="dd-item" data-id="4">
-                        <div class="addItemAppend input-group">
-                            <input id="inputAddItem" type="text" class="form-control" aria-label="Add Item" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button onclick="saveInputAddItem()" class="btn btn-outline-primary" type="button">Save</button>
-                                <button onclick="cancelInputAddItem()" class="btn btn-outline-danger" type="button">Cancel</button>
-                            </div>
-                        </div>
-                    </li>
-                </ol> --}}
-
             </div>
         </div>
     </div>
@@ -229,25 +215,29 @@
     <script type="application/javascript">
         $(document).ready(() => {
 
+            // jquery nestablelist
             $("#nestable_list_1").nestable();
-            $('.removeItem').click(function() {
-                alert(1);
-            });
 
+            // Show action buttons when list is hovered
             $(".dd-handle").hover(function() {
                 $(this).find(".btnAction").removeClass('d-none');
             });
 
+            // Hide action buttons when mouse leave list
             $(".dd-handle").on("mouseleave", function() {
                 $(this).find(".btnAction").addClass('d-none');
             });
 
+            // button delete hovered
             $(".btnDelete").hover(function() {
-                $(this).closest("li").addClass('text-danger');
+                $(this).closest("div").addClass('border border-danger');
+                $(this).closest("div").next().find("li div").addClass('border border-danger');
             });
 
+            // button delete mouse leave
             $(".btnDelete").on("mouseleave", function() {
-                $(this).closest("li").removeClass('text-danger');
+                $(this).closest("div").removeClass('border border-danger');
+                $(this).closest("div").next().find("li div").removeClass('border border-danger');
             });
         })
 
@@ -260,7 +250,7 @@
                             <input id="inputAddItem" type="text" class="form-control" aria-label="Add Item" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button type="submit" onclick="saveInputAddItem()" class="btn btn-outline-primary" type="button">Save</button>
-                                <button onclick="cancelInputAddItem()" class="btn btn-outline-danger" type="button">Cancel</button>
+                                <button onclick="cancelInputAddItemBase()" class="btn btn-outline-danger" type="button">Cancel</button>
                             </div>
                         </div>
                     </form>
@@ -282,11 +272,11 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response){
+                success: function(response) {
                     console.log("success");
                     console.log(response);
                 },
-                error: function(response){
+                error: function(response) {
                     console.log("error");
                     console.log(response);
                 }
@@ -296,22 +286,11 @@
 
         // button add new item
         $(".btnAdd").on("click", function(e) {
-            cancelInputAddItem();
-            if ($(this).parent().next('ol').length) {
-                $(this).parent().next('ol').append(`
-                    <li class="addItemAppend dd-item">
-                        <form>
-                            <div class="input-group">
-                                <input id="inputAddItem" type="text" class="form-control" aria-label="Add Item" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button type="submit" onclick="saveInputAddItem()" class="btn btn-outline-primary" type="button">Save</button>
-                                    <button onclick="cancelInputAddItem()" class="btn btn-outline-danger" type="button">Cancel</button>
-                                </div>
-                            </div>
-                        </form>
-                    </li>
-                `);
-            } else {
+
+            var _order = $(this).parents("ol").length;
+            if (_order < 5) {
+                cancelInputAddItem();
+
                 $(this).closest('li').append(`
                     <ol class="dd-list">
                         <li class="addItemAppend dd-item">
@@ -327,15 +306,15 @@
                         </li>
                     </ol>
                 `);
+                document.getElementById("inputAddItem").focus();
             }
-            document.getElementById("inputAddItem").focus();
         })
 
         // button edit Item
         $(".btnEdit").on("click", function(e) {
             cancelInputEditItem();
             $(this).closest('li').prepend(`
-            <form action="">
+            <form>
                 <div class="editItemAppend input-group">
                     <input id="inputEditItem" type="text" class="form-control" aria-label="Edit Item" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -350,6 +329,7 @@
             document.getElementById("inputEditItem").focus();
         })
 
+        //Prevent list to drag when action buttons is clicked
         $(".dd-handle .btnAction").on('mousedown', function(e) {
             event.preventDefault();
             return false;
@@ -357,13 +337,42 @@
 
         // Save Update
         function saveInputEditItem() {
-            alert("save");
-            location.reload();
+            var taskId = $("#inputEditItem").closest("li").data("id");
+            var _name = $("#inputEditItem").val();
+            var _order = $(".editItemAppend").parents("ol").length;
+            console.log($(".editItemAppend").parents("ol li.dd-item"));
+            var _parentId = (_order > 1) ? $(".editItemAppend").parents("ol li.dd-item")[1].dataset.id : 0;
+            console.log(taskId, _name, _order, _parentId);
+            var _rootId = (_order == 1) ? _parentId : $(".editItemAppend").parents("ol li.dd-item")[_order - 1].dataset
+                .id;
+            console.log(taskId, _name, _order, _parentId, _rootId);
+
+            $.ajax({
+                url: "/task/" + taskId,
+                type: "PUT",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    name: _name,
+                    order: _order,
+                    parentId: _parentId,
+                    rootId: _rootId
+                },
+                success: function(response) {
+                    console.log("success");
+                    console.log(response);
+                    // location.reload();
+                },
+                error: function(response) {
+                    console.log("error");
+                    console.log(response);
+                }
+            });
         }
 
         // Cancel Update
         function cancelInputEditItem() {
-            console.log($(this).closest('li').data('id'));
             $(".hidden_edit").removeClass('d-none');
             $(".hidden_edit").removeClass('hidden_edit');
             $(".editItemAppend").remove();
@@ -373,10 +382,12 @@
         function saveInputAddItem() {
             var _name = $("#inputAddItem").val();
             var _order = $(".addItemAppend").parents("ol").length;
-            var _parentId = ($(".addItemAppend").parent().parent().data("id")) ? $(".addItemAppend").parent().parent().data("id") : 0;
+            var _parentId = ($(".addItemAppend").parent().parent().data("id")) ? $(".addItemAppend").parent().parent()
+                .data("id") : 0;
             console.log(_name, _order, _parentId);
             var _rootId = (_parentId) ? $(".addItemAppend").parents("ol li.dd-item")[_order - 2].dataset.id : 0;
             console.log(_name, _order, _parentId, _rootId);
+
             $.ajax({
                 url: "/task",
                 type: "POST",
@@ -403,6 +414,11 @@
 
         // Cancel Add
         function cancelInputAddItem() {
+            $(".addItemAppend").closest('ol').remove();
+        }
+
+        // Cancel Add Base
+        function cancelInputAddItemBase() {
             $(".addItemAppend").remove();
         }
 

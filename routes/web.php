@@ -28,3 +28,4 @@ Route::get('task', [TaskController::class, 'index']);
 Route::get('getAllTask', [TaskController::class, 'getAllTask']);
 Route::post('task', [TaskController::class, 'store']);
 Route::delete('task/{task}', [TaskController::class, 'destroy']);
+Route::put('task/{id}', [TaskController::class, 'update']);
